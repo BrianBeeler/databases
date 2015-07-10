@@ -36,13 +36,13 @@ CREATE TABLE `Users` (
 --
 -- ---
 
-DROP TABLE IF EXISTS `Rooms`;
+-- DROP TABLE IF EXISTS `Rooms`;
 
-CREATE TABLE `Rooms` (
-  `roomId` INT NULL AUTO_INCREMENT DEFAULT NULL,
-  `roomname` VARCHAR(100) NULL DEFAULT NULL,
-  PRIMARY KEY (`roomId`)
-);
+-- CREATE TABLE `Rooms` (
+--   `roomId` INT NULL AUTO_INCREMENT DEFAULT NULL,
+--   `roomname` VARCHAR(100) NULL DEFAULT NULL,
+--   PRIMARY KEY (`roomId`)
+-- );
 
 -- ---
 -- Table 'Friendships'
@@ -67,10 +67,10 @@ DROP TABLE IF EXISTS `Messages`;
 
 CREATE TABLE `Messages` (
   `messageId` INT NULL AUTO_INCREMENT DEFAULT NULL,
-  `text` MEDIUMTEXT NULL DEFAULT NULL,
+  `text` VARCHAR(140) NULL DEFAULT NULL,
   `userId` INT NULL DEFAULT NULL,
-  `roomId` INT NULL DEFAULT NULL,
-  `createdAt` DATETIME NULL DEFAULT NULL,
+  `roomname` VARCHAR(30) NULL DEFAULT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`messageId`)
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE `Messages` (
 ALTER TABLE `Friendships` ADD FOREIGN KEY (selectorID) REFERENCES `Users` (`userId`);
 ALTER TABLE `Friendships` ADD FOREIGN KEY (selecteeID) REFERENCES `Users` (`userId`);
 ALTER TABLE `Messages` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-ALTER TABLE `Messages` ADD FOREIGN KEY (roomId) REFERENCES `Rooms` (`roomId`);
+-- ALTER TABLE `Messages` ADD FOREIGN KEY (roomId) REFERENCES `Rooms` (`roomId`);
 
 -- ---
 -- Table Properties

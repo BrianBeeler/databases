@@ -12,6 +12,7 @@ $(function() {
     friends: {},
 
     init: function() {
+      console.log('Initialized!')
       // Get username
       app.username = window.location.search.substr(10);
 
@@ -35,13 +36,21 @@ $(function() {
       setInterval(app.fetch, 3000);
     },
     send: function(data) {
+      console.log("Client send function!")
+
+      // var message = {
+      //   username: app.username,
+      //   text: app.$message.val(),
+      //   roomname: app.roomname || 'lobby'
+      // };
+
       app.startSpinner();
       // Clear messages input
       app.$message.val('');
 
       // POST the message to the server
       $.ajax({
-        url: app.server,
+        url: app.server + '/classes/messages',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
@@ -57,7 +66,7 @@ $(function() {
     },
     fetch: function(animate) {
       $.ajax({
-        url: app.server,
+        url: app.server + '/classes/messages',
         type: 'GET',
         contentType: 'application/json',
         data: { order: '-createdAt'},
@@ -209,7 +218,9 @@ $(function() {
       }
     },
     handleSubmit: function(evt) {
+      console.log("handlesubmit")
       var message = {
+
         username: app.username,
         text: app.$message.val(),
         roomname: app.roomname || 'lobby'
